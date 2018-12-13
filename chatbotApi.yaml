@@ -1,0 +1,587 @@
+swagger: "2.0"
+info:
+  description: "Chatbot API documentation"
+  version: "1.0.0"
+  title: "Chatbot"
+
+tags:
+- name: "employee"
+  description: "Details of employees in the organization"
+- name: "visitor"
+  description: "Details of the visitors"
+- name: "department"
+  description: "Details of departments in the organization"
+- name: "title"
+  description: "Titles of the employees in the organization"
+- name: "meetings"
+  description: "Provides information about all the meetings that take place"
+
+schemes:
+- "https"
+- "http"
+paths:
+  /employee:
+    get:
+      tags:
+      - "employee"
+      summary: "Display all employees"
+      description: ""
+      operationId: "get_employee"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "object"
+            additionalProperties:
+              type: "integer"
+              format: "int32"
+      security:
+      - api_key: []
+    post:
+      tags:
+      - "employee"
+      summary: "Add a new employee"
+      description: ""
+      operationId: "add_employee"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Employee object that needs to be added"
+        required: true
+        schema:
+          $ref: "#/definitions/Employee"
+      responses:
+        400:
+          description: "No input data provided"
+        422:
+          description: "Validation exception"
+      security:
+      - employee_auth:
+        - "write:employee"
+        - "read:employee"
+    put:
+      tags:
+      - "employee"
+      summary: "Update an existing employee"
+      description: ""
+      operationId: "update_employee"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Employee object that needs to be updated"
+        required: true
+        schema:
+          $ref: "#/definitions/Employee"
+      responses:
+        400:
+          description: "Invalid ID supplied"
+        404:
+          description: "Employee not found"
+        405:
+          description: "Validation exception"
+      security:
+      - employee_auth:
+        - "write:employee"
+        - "read:employee"
+  /employee/{Id}:
+    get:
+      tags:
+      - "employee"
+      summary: "Find employee by ID"
+      description: "Returns a single employee"
+      operationId: "employee_detail"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "Id"
+        in: "path"
+        description: "ID of employee to return"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        400:
+          description: "Employee could not be found"
+      security:
+      - api_key: []
+  /visitor:
+    get:
+      tags:
+      - "visitor"
+      summary: "Display all visitors"
+      description: ""
+      operationId: "get_visitor"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "object"
+            additionalProperties:
+              type: "integer"
+              format: "int32"
+      security:
+      - api_key: []
+    post:
+      tags:
+      - "visitor"
+      summary: "Add a new visitor"
+      description: ""
+      operationId: "add_visitor"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Visitor object that needs to be added"
+        required: true
+        schema:
+          $ref: "#/definitions/Visitor"
+      responses:
+        400:
+          description: "No input data provided"
+        422:
+          description: "Validation exception"
+      security:
+      - visitor_auth:
+        - "write:visitor"
+        - "read:visitor"
+    put:
+      tags:
+      - "visitor"
+      summary: "Update an existing visitor"
+      description: ""
+      operationId: "update_visitor"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Visitor object that needs to be updated"
+        required: true
+        schema:
+          $ref: "#/definitions/Visitor"
+      responses:
+        400:
+          description: "Invalid ID supplied"
+        404:
+          description: "Visitor not found"
+        405:
+          description: "Validation exception"
+      security:
+      - visitor_auth:
+        - "write:visitor"
+        - "read:visitor"
+  /visitor/{Id}:
+    get:
+      tags:
+      - "visitor"
+      summary: "Find visitor by ID"
+      description: "Returns a single visitor"
+      operationId: "visitor_detail"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "Id"
+        in: "path"
+        description: "ID of visitor to return"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        400:
+          description: "Visitor could not be found"
+      security:
+      - api_key: []
+  /department:
+    get:
+      tags:
+      - "department"
+      summary: "Displays all departments"
+      description: ""
+      operationId: "get_department"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "object"
+            additionalProperties:
+              type: "integer"
+              format: "int32"
+      security:
+      - api_key: []
+    post:
+      tags:
+      - "department"
+      summary: "Add a new department"
+      description: ""
+      operationId: "add_department"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Department object that needs to be added"
+        required: true
+        schema:
+          $ref: "#/definitions/Department"
+      responses:
+        400:
+          description: "No input data provided"
+        422:
+          description: "Validation exception"
+      security:
+      - department_auth:
+        - "write:department"
+        - "read:department"
+    put:
+      tags:
+      - "department"
+      summary: "Update an existing department"
+      description: ""
+      operationId: "update_department"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Department object that needs to be updated"
+        required: true
+        schema:
+          $ref: "#/definitions/Department"
+      responses:
+        400:
+          description: "Invalid ID supplied"
+        404:
+          description: "Department not found"
+        405:
+          description: "Validation exception"
+      security:
+      - department_auth:
+        - "write:department"
+        - "read:department"
+  /department/{Id}:
+    get:
+      tags:
+      - "department"
+      summary: "Find department by ID"
+      description: "Returns a single department"
+      operationId: "department_detail"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "Id"
+        in: "path"
+        description: "ID of department to return"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        400:
+          description: "Department could not be found"
+      security:
+      - api_key: []
+  /title:
+    get:
+      tags:
+      - "title"
+      summary: "Displays all titles"
+      description: ""
+      operationId: "get_title"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "object"
+            additionalProperties:
+              type: "integer"
+              format: "int32"
+      security:
+      - api_key: []
+    post:
+      tags:
+      - "title"
+      summary: "Add a new title"
+      description: ""
+      operationId: "add_title"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Title object that needs to be added"
+        required: true
+        schema:
+          $ref: "#/definitions/Title"
+      responses:
+        400:
+          description: "No input data provided"
+        422:
+          description: "Validation exception"
+      security:
+      - title_auth:
+        - "write:title"
+        - "read:title"
+    put:
+      tags:
+      - "title"
+      summary: "Update an existing title"
+      description: ""
+      operationId: "update_title"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Title object that needs to be updated"
+        required: true
+        schema:
+          $ref: "#/definitions/Title"
+      responses:
+        400:
+          description: "Invalid ID supplied"
+        404:
+          description: "Title not found"
+        405:
+          description: "Validation exception"
+      security:
+      - title_auth:
+        - "write:title"
+        - "read:title"
+  /title/{Id}:
+    get:
+      tags:
+      - "title"
+      summary: "Find title by ID"
+      description: "Returns a single title"
+      operationId: "title_detail"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "Id"
+        in: "path"
+        description: "ID of title to return"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        400:
+          description: "Title could not be found"
+      security:
+      - api_key: []
+  /meetings:
+    get:
+      tags:
+      - "meetings"
+      summary: "Displays all meetings"
+      description: ""
+      operationId: "get_meetings"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Meetings"
+      security:
+      - api_key: []
+  /meetings/{Id}:
+    get:
+      tags:
+      - "meetings"
+      summary: "Find meeting by meeting_id"
+      description: "Returns a single meeting"
+      operationId: "meeting_detail"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "Id"
+        in: "path"
+        description: "ID of meeting to return"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        400:
+          description: "Meeting ID could not be found"
+          schema:
+            $ref: "#/definitions/Meetings"
+      security:
+      - api_key: []  
+securityDefinitions:
+  employee_auth:
+    type: "oauth2"
+    flow: "implicit"
+    scopes:
+      write:employee: "modify employee in your account"
+      read:employee: "read your employee"
+  visitor_auth:
+    type: "oauth2"
+    flow: "implicit"
+    scopes:
+      write:visitor: "modify visitor in your account"
+      read:visitor: "read your visitor"
+  department_auth:
+    type: "oauth2"
+    flow: "implicit"
+    scopes:
+      write:department: "modify department in your account"
+      read:department: "read your department"
+  title_auth:
+    type: "oauth2"
+    flow: "implicit"
+    scopes:
+      write:title: "modify title in your account"
+      read:title: "read your title"
+  api_key:
+    type: "apiKey"
+    name: "api_key"
+    in: "header"
+definitions:
+  Meetings:
+    type: "object"
+    required:
+    - "meeting_id"
+    properties:
+      meeting_id:
+        type: "integer"
+        format: "int64"
+      visitor:
+        $ref: "#/definitions/Visitor"
+      employee:
+        $ref: "#/definitions/Employee"
+      time_in:
+        type: "string"
+        format: "date-time"
+      time_out:
+        type: "string"
+        format: "date-time"
+    xml:
+      name: "Meetings"
+  Department:
+    type: "object"
+    required:
+    - "id"
+    - "name"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      name:
+        type: "string"
+    xml:
+      name: "Department"
+  Title:
+    type: "object"
+    required:
+    - "id"
+    - "name"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      name:
+        type: "string"
+    xml:
+      name: "Title"
+  Visitor:
+    type: "object"
+    required:
+    - "id"
+    - "nationalID"
+    - "name"
+    - "email"
+    - "phone"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      nationalID:
+        type: "integer"
+        format: "int64"
+      name:
+        type: "string"
+      email:
+        type: "string"
+      phone:
+        type: "integer"
+        format: "int64"
+      company:
+        type: "string"
+      message:
+        type: "string"
+    xml:
+      name: "Visitor"
+  Employee:
+    type: "object"
+    required:
+    - "id"
+    - "name"
+    - "email"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      name:
+        type: "string"
+      email:
+        type: "string"
+      department:
+        $ref: "#/definitions/Department"
+      title:
+        $ref: "#/definitions/Title"
+    xml:
+      name: "Employee"

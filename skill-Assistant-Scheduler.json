@@ -1,0 +1,1299 @@
+{
+  "name": "Assistant Scheduler",
+  "intents": [
+    {
+      "intent": "General_Ending",
+      "examples": [
+        {
+          "text": "Ok goodbye"
+        },
+        {
+          "text": "Goodbye"
+        },
+        {
+          "text": "Have a nice day"
+        },
+        {
+          "text": "That is all"
+        },
+        {
+          "text": "Bye"
+        },
+        {
+          "text": "Thanks, bye!"
+        }
+      ],
+      "description": "End the conversation."
+    },
+    {
+      "intent": "Leave_Message",
+      "examples": [
+        {
+          "text": "I want to leave a message"
+        },
+        {
+          "text": "message"
+        },
+        {
+          "text": "I would like to leave a message"
+        },
+        {
+          "text": "I wish to leave a message"
+        }
+      ],
+      "description": "When visitors want to leave a message for their host"
+    },
+    {
+      "intent": "Schedule_Meeting",
+      "examples": [
+        {
+          "text": "I would like to request a meeting"
+        },
+        {
+          "text": "I want to schedule a meeting"
+        },
+        {
+          "text": "Schedule a meeting"
+        }
+      ],
+      "description": "User wants to schedule a meeting"
+    },
+    {
+      "intent": "General_Greetings",
+      "examples": [
+        {
+          "text": "Good afternoon"
+        },
+        {
+          "text": "What's up?"
+        },
+        {
+          "text": "Hey"
+        },
+        {
+          "text": "Good morning"
+        },
+        {
+          "text": "Hi"
+        },
+        {
+          "text": "Good evening"
+        },
+        {
+          "text": "Hello"
+        }
+      ],
+      "description": "Start the conversation"
+    }
+  ],
+  "entities": [
+    {
+      "entity": "contactInfo",
+      "values": [
+        {
+          "type": "patterns",
+          "value": "phone_number",
+          "patterns": [
+            "(\\d{10})"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "gender",
+          "synonyms": [
+            "Female",
+            "Male"
+          ]
+        },
+        {
+          "type": "patterns",
+          "value": "email",
+          "patterns": [
+            "\\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}\\b"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "note",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "note",
+          "synonyms": []
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "visit",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "meeting",
+          "synonyms": [
+            "schedule a meeting",
+            "schedule meeting",
+            "meeting"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "message",
+          "synonyms": [
+            "leave a message",
+            "message",
+            "leave message"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "sys-date",
+      "values": []
+    },
+    {
+      "entity": "sys-location",
+      "values": []
+    },
+    {
+      "entity": "sys-time",
+      "values": []
+    },
+    {
+      "entity": "sys-person",
+      "values": []
+    }
+  ],
+  "language": "en",
+  "metadata": {
+    "api_version": {
+      "major_version": "v1",
+      "minor_version": "2018-07-10"
+    }
+  },
+  "description": "A virtual assistant that helps customers either schedule a meeting or leave a message",
+  "dialog_nodes": [
+    {
+      "type": "event_handler",
+      "output": {
+        "text": {
+          "values": [
+            "Your meeting has been scheduled on $date at $time with $host. Thank you for your time."
+          ]
+        }
+      },
+      "parent": "slot_48_1536919790654",
+      "metadata": {},
+      "next_step": {
+        "behavior": "skip_all_slots"
+      },
+      "conditions": "anything_else",
+      "event_name": "nomatch",
+      "dialog_node": "handler_5_1541664039983",
+      "previous_sibling": "handler_51_1536919790654"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": {
+          "values": [
+            "Your meeting has been scheduled on $date at $time with $host. Thank you for your time."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "slot_48_1536919790654",
+      "metadata": {},
+      "conditions": "true",
+      "event_name": "filled",
+      "dialog_node": "handler_51_1536919790654",
+      "previous_sibling": "handler_50_1536919790654"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_48_1536919790654",
+      "context": {
+        "note": "<? @note.literal ?>"
+      },
+      "metadata": {},
+      "conditions": "@note",
+      "event_name": "input",
+      "dialog_node": "handler_50_1536919790654",
+      "previous_sibling": "handler_49_1536919790654"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": "What message would you like to leave for $host?"
+      },
+      "parent": "slot_48_1536919790654",
+      "metadata": {},
+      "event_name": "focus",
+      "dialog_node": "handler_49_1536919790654"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_40_1536824285841",
+      "metadata": {},
+      "event_name": "focus",
+      "dialog_node": "handler_42_1536824285841",
+      "previous_sibling": "handler_41_1536824285841"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_40_1536824285841",
+      "metadata": {},
+      "event_name": "input",
+      "dialog_node": "handler_41_1536824285841"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_23_1536673290045",
+      "context": {
+        "person": "<?@sys-person.literal?>"
+      },
+      "metadata": {},
+      "conditions": "@sys-person",
+      "event_name": "input",
+      "dialog_node": "handler_24_1536673290045",
+      "previous_sibling": "handler_25_1536673290045"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": {
+          "values": [
+            "Nice to meet you @sys-person. Please provide your contact details so that we can get back to you."
+          ]
+        }
+      },
+      "parent": "slot_23_1536673290045",
+      "metadata": {},
+      "next_step": {
+        "behavior": "reprompt"
+      },
+      "conditions": "anything_else",
+      "event_name": "nomatch",
+      "dialog_node": "handler_20_1537170184523",
+      "previous_sibling": "handler_8_1537168007939"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": {
+          "values": [
+            "Nice to meet you @sys-person. Please provide your contact details so that we can get back to you."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "slot_23_1536673290045",
+      "metadata": {},
+      "conditions": "true",
+      "event_name": "filled",
+      "dialog_node": "handler_8_1537168007939",
+      "previous_sibling": "handler_24_1536673290045"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": "What is your full name?"
+      },
+      "parent": "slot_23_1536673290045",
+      "metadata": {},
+      "event_name": "focus",
+      "dialog_node": "handler_25_1536673290045"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": {
+          "values": [],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "slot_1_1536913327834",
+      "metadata": {},
+      "event_name": "nomatch",
+      "dialog_node": "handler_7_1536919320746",
+      "previous_sibling": "handler_6_1541404779523"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": {
+          "values": [],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "slot_1_1536913327834",
+      "metadata": {},
+      "event_name": "filled",
+      "dialog_node": "handler_28_1537171171037",
+      "previous_sibling": "handler_5_1541404779523"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": {
+          "values": [
+            "You would like to schedule a meeting with $host on $date at $time."
+          ]
+        }
+      },
+      "parent": "slot_1_1536913327834",
+      "metadata": {},
+      "conditions": "true",
+      "event_name": "filled",
+      "dialog_node": "handler_5_1541404779523",
+      "previous_sibling": "handler_2_1536913327834"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": {
+          "values": [
+            "You would like to schedule a meeting with $host on $date at $time."
+          ]
+        }
+      },
+      "parent": "slot_1_1536913327834",
+      "metadata": {},
+      "next_step": {
+        "behavior": "reprompt"
+      },
+      "conditions": "anything_else",
+      "event_name": "nomatch",
+      "dialog_node": "handler_6_1541404779523",
+      "previous_sibling": "handler_28_1537171171037"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_1_1536913327834",
+      "context": {
+        "host": "<?@sys-person.literal?>"
+      },
+      "metadata": {},
+      "conditions": "@sys-person",
+      "event_name": "input",
+      "dialog_node": "handler_2_1536913327834",
+      "previous_sibling": "handler_3_1536913327834"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": "Who would you like to visit?"
+      },
+      "parent": "slot_1_1536913327834",
+      "metadata": {},
+      "event_name": "focus",
+      "dialog_node": "handler_3_1536913327834"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_25_1536919790653",
+      "context": {
+        "person": "<?@sys-person.literal?>"
+      },
+      "metadata": {},
+      "conditions": "@sys-person",
+      "event_name": "input",
+      "dialog_node": "handler_27_1536919790654",
+      "previous_sibling": "handler_26_1536919790654"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": {
+          "values": [
+            "Nice to meet you $person."
+          ]
+        }
+      },
+      "parent": "slot_25_1536919790653",
+      "conditions": "true",
+      "event_name": "filled",
+      "dialog_node": "handler_8_1542110689527",
+      "previous_sibling": "handler_27_1536919790654"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": {
+          "values": [
+            "Nice to meet you $person."
+          ]
+        }
+      },
+      "parent": "slot_25_1536919790653",
+      "next_step": {
+        "behavior": "skip_slot"
+      },
+      "conditions": "anything_else",
+      "event_name": "nomatch",
+      "dialog_node": "handler_9_1542110689527",
+      "previous_sibling": "handler_8_1542110689527"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": "What is your full name?"
+      },
+      "parent": "slot_25_1536919790653",
+      "metadata": {},
+      "event_name": "focus",
+      "dialog_node": "handler_26_1536919790654"
+    },
+    {
+      "type": "slot",
+      "output": {},
+      "parent": "node_1_1536670111907",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "variable": "$date",
+      "dialog_node": "slot_4_1536672010085",
+      "previous_sibling": "node_29_1536915603468"
+    },
+    {
+      "type": "slot",
+      "output": {},
+      "parent": "node_1_1536670111907",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "variable": "$email",
+      "dialog_node": "slot_10_1536672179573",
+      "previous_sibling": "slot_23_1536673290045"
+    },
+    {
+      "type": "slot",
+      "output": {},
+      "parent": "node_1_1536670111907",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "variable": "$person",
+      "dialog_node": "slot_23_1536673290045",
+      "previous_sibling": "slot_1_1536913327834"
+    },
+    {
+      "type": "event_handler",
+      "parent": "node_1_1536670111907",
+      "metadata": {},
+      "event_name": "focus",
+      "dialog_node": "handler_28_1536673342869",
+      "previous_sibling": "slot_10_1536672179573"
+    },
+    {
+      "type": "slot",
+      "output": {},
+      "parent": "node_1_1536670111907",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "variable": "$time",
+      "dialog_node": "slot_7_1536672116813",
+      "previous_sibling": "slot_4_1536672010085"
+    },
+    {
+      "type": "slot",
+      "output": {},
+      "parent": "node_1_1536670111907",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "variable": "$host",
+      "dialog_node": "slot_1_1536913327834",
+      "previous_sibling": "slot_7_1536672116813"
+    },
+    {
+      "type": "slot",
+      "output": {},
+      "parent": "node_1_1536670111907",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "variable": "$phone",
+      "dialog_node": "slot_8_1536913679451",
+      "previous_sibling": "handler_28_1536673342869"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "title": "What country do you reside in?",
+            "options": [
+              {
+                "label": "Kenya",
+                "value": {
+                  "input": {
+                    "text": "Kenya"
+                  }
+                }
+              },
+              {
+                "label": "Nigeria",
+                "value": {
+                  "input": {
+                    "text": "Nigeria"
+                  }
+                }
+              },
+              {
+                "label": "United States",
+                "value": {
+                  "input": {
+                    "text": "United States"
+                  }
+                }
+              }
+            ],
+            "response_type": "option"
+          }
+        ]
+      },
+      "parent": "node_1_1536670111907",
+      "disabled": true,
+      "metadata": {},
+      "dialog_node": "node_29_1536915603468"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_10_1536672179573",
+      "context": {
+        "email": "@contactInfo"
+      },
+      "metadata": {},
+      "conditions": "@contactInfo",
+      "event_name": "input",
+      "dialog_node": "handler_11_1536672179573",
+      "previous_sibling": "handler_12_1536672179573"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": {
+          "values": [
+            "You have input an invalid email."
+          ]
+        }
+      },
+      "parent": "slot_10_1536672179573",
+      "next_step": {
+        "behavior": "reprompt"
+      },
+      "conditions": "anything_else",
+      "event_name": "nomatch",
+      "dialog_node": "handler_5_1542110445210",
+      "previous_sibling": "handler_11_1536672179573"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": "What is your email address."
+      },
+      "parent": "slot_10_1536672179573",
+      "metadata": {},
+      "event_name": "focus",
+      "dialog_node": "handler_12_1536672179573"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": {
+          "values": [
+            "Sorry, we're only open on weekdays."
+          ]
+        }
+      },
+      "parent": "slot_4_1536672010085",
+      "metadata": {},
+      "next_step": {
+        "behavior": "reprompt"
+      },
+      "conditions": "@sys-date.reformatDateTime(\"EEEEE\") == \"Saturday\" || @sys-date.reformatDateTime(\"EEEEE\") == \"Sunday\"",
+      "event_name": "filled",
+      "dialog_node": "handler_44_1536675006688",
+      "previous_sibling": "handler_15_1536672702112"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_4_1536672010085",
+      "context": {
+        "date": "@sys-date"
+      },
+      "metadata": {},
+      "conditions": "@sys-date",
+      "event_name": "input",
+      "dialog_node": "handler_5_1536672010085",
+      "previous_sibling": "handler_6_1536672010085"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": {
+          "values": [
+            "I'm sorry I didn't get that."
+          ]
+        }
+      },
+      "parent": "slot_4_1536672010085",
+      "metadata": {},
+      "next_step": {
+        "behavior": "reprompt"
+      },
+      "conditions": "anything_else",
+      "event_name": "nomatch",
+      "dialog_node": "handler_6_1537167285356",
+      "previous_sibling": "handler_44_1536675006688"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": {
+          "values": [
+            "Unfortunately we can't set up an appointment for today, we need 24 hours notice to make an appointment."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "slot_4_1536672010085",
+      "metadata": {},
+      "next_step": {
+        "behavior": "reprompt"
+      },
+      "conditions": "$date.before(now())",
+      "event_name": "filled",
+      "dialog_node": "handler_15_1536672702112",
+      "previous_sibling": "handler_5_1536672010085"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": "I can help you schedule a meeting with one of our employees. What day would be best for you?"
+      },
+      "parent": "slot_4_1536672010085",
+      "metadata": {},
+      "event_name": "focus",
+      "dialog_node": "handler_6_1536672010085"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_8_1536913679451",
+      "context": {
+        "phone": "contactInfo.literal"
+      },
+      "metadata": {},
+      "conditions": "@contactInfo",
+      "event_name": "input",
+      "dialog_node": "handler_9_1536913679451",
+      "previous_sibling": "handler_10_1536913679451"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": {
+          "values": [
+            "You have input an invalid phone number."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "slot_8_1536913679451",
+      "metadata": {},
+      "next_step": {
+        "behavior": "reprompt"
+      },
+      "conditions": "anything_else",
+      "event_name": "nomatch",
+      "dialog_node": "handler_14_1536914323188",
+      "previous_sibling": "handler_7_1542110601888"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": {
+          "values": [
+            "Your meeting has been scheduled with $host on $date at $time. Thank you for your time."
+          ]
+        }
+      },
+      "parent": "slot_8_1536913679451",
+      "conditions": "true",
+      "event_name": "filled",
+      "dialog_node": "handler_7_1542110601888",
+      "previous_sibling": "handler_9_1536913679451"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": "What is your phone number?"
+      },
+      "parent": "slot_8_1536913679451",
+      "metadata": {},
+      "event_name": "focus",
+      "dialog_node": "handler_10_1536913679451"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Good morning, my name is simpleBot and i'm here to help."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          },
+          {
+            "title": "Would you like to schedule a meeting or leave a message?",
+            "options": [
+              {
+                "label": "Schedule a meeting",
+                "value": {
+                  "input": {
+                    "text": "schedule a meeting"
+                  }
+                }
+              },
+              {
+                "label": "Leave a message",
+                "value": {
+                  "input": {
+                    "text": "leave a message"
+                  }
+                }
+              }
+            ],
+            "response_type": "option"
+          }
+        ]
+      },
+      "parent": "node_7_1536824285821",
+      "metadata": {},
+      "conditions": "now().after('04:00:00') && now().before('11:59:59')",
+      "dialog_node": "node_43_1536824285841",
+      "previous_sibling": "slot_40_1536824285841"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Good evening, my name is simpleBot and i'm here to help."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          },
+          {
+            "title": "Would you like to schedule a meeting or leave a message?",
+            "options": [
+              {
+                "label": "Schedule a meeting",
+                "value": {
+                  "input": {
+                    "text": "schedule a meeting"
+                  }
+                }
+              },
+              {
+                "label": "Leave a message",
+                "value": {
+                  "input": {
+                    "text": "leave a message"
+                  }
+                }
+              }
+            ],
+            "response_type": "option"
+          }
+        ]
+      },
+      "parent": "node_7_1536824285821",
+      "metadata": {},
+      "conditions": "now().after('17:00:00')",
+      "dialog_node": "node_45_1536824285841",
+      "previous_sibling": "node_44_1536824285841"
+    },
+    {
+      "type": "frame",
+      "title": "Leave a message",
+      "output": {
+        "generic": []
+      },
+      "parent": "node_7_1536824285821",
+      "metadata": {
+        "fallback": "leave",
+        "_customization": {
+          "mcr": false
+        }
+      },
+      "conditions": "@visit:message",
+      "dialog_node": "node_13_1536919790650",
+      "digress_out": "allow_all",
+      "previous_sibling": "node_1_1536670111907",
+      "digress_out_slots": "not_allowed"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Good afternoon, my name is simpleBot and i'm here to help."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          },
+          {
+            "title": "Would you like to schedule a meeting or leave a message?",
+            "options": [
+              {
+                "label": "Schedule a meeting",
+                "value": {
+                  "input": {
+                    "text": "schedule a meeting"
+                  }
+                }
+              },
+              {
+                "label": "Leave a message",
+                "value": {
+                  "input": {
+                    "text": "leave a message"
+                  }
+                }
+              }
+            ],
+            "response_type": "option"
+          }
+        ]
+      },
+      "parent": "node_7_1536824285821",
+      "metadata": {},
+      "conditions": "now().after('12:00:00') && now().before('16:59:59')",
+      "dialog_node": "node_44_1536824285841",
+      "previous_sibling": "node_43_1536824285841"
+    },
+    {
+      "type": "response_condition",
+      "output": {},
+      "parent": "node_7_1536824285821",
+      "metadata": {},
+      "dialog_node": "node_3_1537166198089",
+      "previous_sibling": "node_45_1536824285841"
+    },
+    {
+      "type": "slot",
+      "output": {},
+      "parent": "node_7_1536824285821",
+      "metadata": {},
+      "dialog_node": "slot_40_1536824285841",
+      "previous_sibling": "node_13_1536919790650"
+    },
+    {
+      "type": "frame",
+      "title": "Schedule a meeting",
+      "output": {
+        "generic": []
+      },
+      "parent": "node_7_1536824285821",
+      "metadata": {
+        "fallback": "leave",
+        "_customization": {
+          "mcr": false
+        }
+      },
+      "conditions": "@visit:meeting",
+      "dialog_node": "node_1_1536670111907",
+      "digress_out": "allow_all",
+      "digress_out_slots": "not_allowed"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": {
+          "values": [
+            "It looks like you mentioned $time. Unfortunately, we only accept appointments between 8am and 4pm"
+          ]
+        }
+      },
+      "parent": "slot_7_1536672116813",
+      "metadata": {},
+      "next_step": {
+        "behavior": "reprompt"
+      },
+      "conditions": "$time.after('16:00:00') || $time.before('07:59:59')",
+      "event_name": "filled",
+      "dialog_node": "handler_42_1536674564690",
+      "previous_sibling": "handler_8_1536672116813"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_7_1536672116813",
+      "context": {
+        "time": "@sys-time"
+      },
+      "metadata": {},
+      "conditions": "@sys-time",
+      "event_name": "input",
+      "dialog_node": "handler_8_1536672116813",
+      "previous_sibling": "handler_9_1536672116813"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": {
+          "values": [
+            "Please input the time in 12 hour format e.g. 8am."
+          ]
+        }
+      },
+      "parent": "slot_7_1536672116813",
+      "metadata": {},
+      "next_step": {
+        "behavior": "reprompt"
+      },
+      "conditions": "anything_else",
+      "event_name": "nomatch",
+      "dialog_node": "handler_7_1537167431522",
+      "previous_sibling": "handler_42_1536674564690"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": "What time on <? $date.reformatDateTime(\"EEEEE\") ?> would you like the meeting to be? You can schedule a meeting between 8am and 4pm"
+      },
+      "parent": "slot_7_1536672116813",
+      "metadata": {},
+      "event_name": "focus",
+      "dialog_node": "handler_9_1536672116813"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_41_1536919790654",
+      "context": {
+        "host": "<?@sys-person.literal?>"
+      },
+      "metadata": {},
+      "conditions": "@sys-person",
+      "event_name": "input",
+      "dialog_node": "handler_43_1536919790654",
+      "previous_sibling": "handler_42_1536919790654"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": {
+          "values": [
+            "You want to leave a message for $host."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "slot_41_1536919790654",
+      "metadata": {},
+      "next_step": {
+        "behavior": "reprompt"
+      },
+      "conditions": "anything_else",
+      "event_name": "nomatch",
+      "dialog_node": "handler_44_1536919790654",
+      "previous_sibling": "handler_12_1542110868961"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": {
+          "values": [
+            "You want to leave a message for $host."
+          ]
+        }
+      },
+      "parent": "slot_41_1536919790654",
+      "conditions": "true",
+      "event_name": "filled",
+      "dialog_node": "handler_12_1542110868961",
+      "previous_sibling": "handler_43_1536919790654"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": "Who would you like to leave a message for?"
+      },
+      "parent": "slot_41_1536919790654",
+      "metadata": {},
+      "event_name": "focus",
+      "dialog_node": "handler_42_1536919790654"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_31_1536919790654",
+      "context": {
+        "email": "@contactInfo"
+      },
+      "metadata": {},
+      "conditions": "@contactInfo",
+      "event_name": "input",
+      "dialog_node": "handler_33_1536919790654",
+      "previous_sibling": "handler_32_1536919790654"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": {
+          "values": [
+            "You have input an invalid email address."
+          ]
+        }
+      },
+      "parent": "slot_31_1536919790654",
+      "next_step": {
+        "behavior": "reprompt"
+      },
+      "conditions": "anything_else",
+      "event_name": "nomatch",
+      "dialog_node": "handler_11_1542110759712",
+      "previous_sibling": "handler_10_1542110759712"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": {
+          "values": []
+        }
+      },
+      "parent": "slot_31_1536919790654",
+      "conditions": "true",
+      "event_name": "filled",
+      "dialog_node": "handler_10_1542110759712",
+      "previous_sibling": "handler_33_1536919790654"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": "Please input your email address"
+      },
+      "parent": "slot_31_1536919790654",
+      "metadata": {},
+      "event_name": "focus",
+      "dialog_node": "handler_32_1536919790654"
+    },
+    {
+      "type": "event_handler",
+      "parent": "node_13_1536919790650",
+      "metadata": {},
+      "event_name": "focus",
+      "dialog_node": "handler_52_1536919790654",
+      "previous_sibling": "slot_25_1536919790653"
+    },
+    {
+      "type": "slot",
+      "output": {},
+      "parent": "node_13_1536919790650",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "variable": "$email",
+      "dialog_node": "slot_31_1536919790654",
+      "previous_sibling": "handler_52_1536919790654"
+    },
+    {
+      "type": "slot",
+      "output": {},
+      "parent": "node_13_1536919790650",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "variable": "$note",
+      "dialog_node": "slot_48_1536919790654",
+      "previous_sibling": "slot_41_1536919790654"
+    },
+    {
+      "type": "slot",
+      "output": {},
+      "parent": "node_13_1536919790650",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "variable": "$host",
+      "dialog_node": "slot_41_1536919790654",
+      "previous_sibling": "slot_31_1536919790654"
+    },
+    {
+      "type": "slot",
+      "output": {},
+      "parent": "node_13_1536919790650",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "variable": "$person",
+      "dialog_node": "slot_25_1536919790653",
+      "previous_sibling": "node_53_1536919790654"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "title": "What country do you reside in?",
+            "options": [
+              {
+                "label": "Kenya",
+                "value": {
+                  "input": {
+                    "text": "Kenya"
+                  }
+                }
+              },
+              {
+                "label": "Nigeria",
+                "value": {
+                  "input": {
+                    "text": "Nigeria"
+                  }
+                }
+              },
+              {
+                "label": "United States",
+                "value": {
+                  "input": {
+                    "text": "United States"
+                  }
+                }
+              }
+            ],
+            "response_type": "option"
+          }
+        ]
+      },
+      "parent": "node_13_1536919790650",
+      "disabled": true,
+      "metadata": {},
+      "dialog_node": "node_53_1536919790654"
+    },
+    {
+      "type": "standard",
+      "title": "Goodbye",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Goodbye :)"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "metadata": {},
+      "conditions": "#General_Ending",
+      "dialog_node": "node_1_1537192239092",
+      "previous_sibling": "node_7_1536824285821"
+    },
+    {
+      "type": "standard",
+      "title": "Anything else",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "I didn't understand. You can try rephrasing."
+              },
+              {
+                "text": "Can you reword your statement? I'm not understanding."
+              },
+              {
+                "text": "I didn't get your meaning."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "metadata": {},
+      "conditions": "anything_else",
+      "dialog_node": "Anything else",
+      "previous_sibling": "node_1_1537192239092"
+    },
+    {
+      "type": "standard",
+      "title": "Welcome",
+      "output": {},
+      "metadata": {
+        "fallback": "leave",
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "conditions": "welcome || #General_Greetings",
+      "digress_in": "does_not_return",
+      "dialog_node": "node_7_1536824285821",
+      "digress_out": "allow_all"
+    }
+  ],
+  "workspace_id": "981a93e6-f2db-4caa-89e6-c822ea64d58d",
+  "counterexamples": [],
+  "system_settings": {
+    "tooling": {
+      "store_generic_responses": true
+    },
+    "disambiguation": {
+      "prompt": "Did you mean:",
+      "none_of_the_above_prompt": "None of the above"
+    },
+    "human_agent_assist": {
+      "prompt": "Did you mean:"
+    }
+  },
+  "learning_opt_out": false,
+  "status": "Available"
+}

@@ -1,0 +1,397 @@
+{
+	"info": {
+		"_postman_id": "983d4c87-9428-418e-810f-cd6daeded17f",
+		"name": "chatbot",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Visitor",
+			"item": [
+				{
+					"name": "Display all visitors",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:5000/visitor",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"visitor"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add a visitor",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": 2,\n\t\"nationalID\": 25366898,\n\t\"name\": \"Faith Jane\",\n\t\"email\": \"fj@mail.com\",\n\t\"phone\": 712334455,\n\t\"company\": \"My Company\",\n\t\"message\": \"\"\n}"
+						},
+						"url": {
+							"raw": "localhost:5000/visitor",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"visitor"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Display visitor by visitor_id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:5000/visitor/1",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"visitor",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update visitor by visitor_id",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"visitor_name\": \"Faith Jane\",\n\t\"visitor_email\": \"faithj@mail.com\",\n\t\"visitor_phone\": 712334455,\n\t\"company\": \"My Company\"\n}"
+						},
+						"url": {
+							"raw": "localhost:5000/visitor/1",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"visitor",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Employee",
+			"item": [
+				{
+					"name": "Display all employees",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:5000/employee",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"employee"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add an employee",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Faith Maingi\",\n\t\"email\": \"faith@gmail.com\",\n\t\"department\": 2,\n\t\"title\": 2\n}"
+						},
+						"url": {
+							"raw": "localhost:5000/employee",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"employee"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Display employee by employee_id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:5000/employee/4",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"employee",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update employee by employee_id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Display all employees with their departments",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:5000/employees/all",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"employees",
+								"all"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Department",
+			"item": [
+				{
+					"name": "Add a department",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Accounts\"\n}"
+						},
+						"url": {
+							"raw": "localhost:5000/department",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"department"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Display all departments",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:5000/department",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"department"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Display department by id plus all employees in that department",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:5000/department/2",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"department",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Title",
+			"item": [
+				{
+					"name": "Add a title",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Quality Analyst\"\n}"
+						},
+						"url": {
+							"raw": "localhost:5000/title",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"title"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Display all titles",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:5000/title",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"title"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Visits",
+			"item": [
+				{
+					"name": "Display all visits",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
