@@ -1,0 +1,141 @@
+intents:
+  - bye
+  - greet
+  - goal
+  - visitor_name
+  - employee_name
+  - thanks
+  - goodmorning
+  - goodnight
+  - nice_to_meet
+  - schedule_a_meeting
+  - leave_a_message
+  - meeting_date
+
+entities:
+  - company
+  - date
+  - email
+  - employee
+  - visitor
+  - goal
+
+# slots:
+#   goal_value:
+#     type: categorical
+#     values:
+#     - meeting
+#     - message
+#   visitor_name:
+#     type: text
+#   employee_name:
+#     type: text
+#   company_name:
+#     type: text
+#   email:
+#     type: text
+#   message_value:
+#     type: text
+#   date_value:
+#     type: unfeaturized
+
+actions:
+  - utter_greet
+  - utter_ask_goal
+  - utter_nice_to_meet
+  - utter_noworries
+  - utter_bye
+  - utter_great
+  - utter_how_to_help
+  - utter_more_information
+  - utter_ask_employee_name
+  - utter_ask_employee
+  - utter_ask_visitor_name
+  - utter_ask_company
+  - utter_ask_email
+  - utter_ask_message
+  - utter_message_sent
+  - utter_remarks
+  - utter_default
+  - utter_ask_date
+  - action_store_visitor_name
+  - action_store_employee_name
+  - action_store_company
+  - action_store_email
+  - action_get_date
+
+templates:
+
+  utter_greet:
+  - text: "What's up"
+  - text: "Hello 😉"
+  - text: "Hi there "
+
+  utter_ask_goal:
+  - text: "What would you like me to help you with?"
+    buttons:
+      - title: "Schedule a meeting"
+        payload: "meeting"
+      - title: "Leave a message"
+        payload: "message"
+
+  utter_more_information:
+    - text: "Sure! Let's get to know each other first 😉"
+
+  utter_ask_visitor_name:
+    - text: "What's your name?"
+  
+  utter_nice_to_meet:
+    - text: "It is a pleasure to meet {visitor_name}!"
+    - text: "It is nice to meet you {visitor_name}!"
+    - text: "Pleased to meet you {visitor_name}!"
+
+  utter_ask_company:
+    - text: "What company do you work for?"
+        
+  utter_ask_email:
+    - text: "What's your email address?"
+
+  utter_ask_employee_name:
+    - text: "Who would you like to visit?"
+
+  utter_ask_employee:
+    - text: "Who would you like to leave a message?"
+
+  utter_great:
+    - text: "Great! 👍"
+    - text: "That's great! 🙌"
+    - text: "Awesome! 🎉"
+    - text: "Amazing 🚀"
+
+  utter_noworries:
+    - text: "No worries!"
+    - text: "You're welcome!"
+    - text: "I'm happy to help."
+    - text: "👍"
+
+  utter_bye:
+    - text: "Goodbye!"
+    - text: "Bye!"
+    - text: "Take care!"
+    - text: "Bye, was nice talking to you!"
+
+  utter_default:
+    - text: "Sorry, I didn't get that 🤷🏻‍. Could you please rephrase?"
+    - text: "I didn't understand, could you rephrase that?"
+    - text: "I'm sorry, but I didn't understand you. Could you please rephrase what you just said?"
+    - text: "I'm afraid I didn't get what you just said. Could you rephrase that?"
+    - text: "I didn't quite get that, could you rephrase your message?"
+    - text: "Could you rephrase your message? I didn't get it, I'm sorry."
+
+  utter_remarks:
+  - text: "Thanks a bunch, we'll be in touch soon! ✉️"
+
+  utter_ask_message:
+  - text: "What message would you like to leave for {employee_name}?"
+
+  utter_message_sent:
+  - text: "Your message has been sent to {employee_name}."
+
+  utter_ask_date:
+  - text: "When would you like the meeting to be?"

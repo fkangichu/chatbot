@@ -2,112 +2,90 @@
   "rasa_nlu_data": {
     "common_examples": [
       {
-        "text": "Hello",
         "intent": "greet",
-        "entities": []
+        "text": "Hello"
       },
       {
-        "text": "Goodbye",
         "intent": "bye",
-        "entities": []
+        "text": "Goodbye"
       },
       {
-        "text": "Hi",
         "intent": "greet",
-        "entities": []
+        "text": "Hi"
       },
       {
-        "text": "Hey",
         "intent": "greet",
-        "entities": []
+        "text": "Hey"
       },
       {
-        "text": "Bye",
         "intent": "bye",
-        "entities": []
+        "text": "Bye"
       },
       {
-        "text": "Have a nice day",
         "intent": "bye",
-        "entities": []
+        "text": "Have a nice day"
       },
       {
-        "text": "Thank you",
         "intent": "thanks",
-        "entities": []
+        "text": "Thank you"
       },
       {
-        "text": "You helped a lot thank you",
         "intent": "thanks",
-        "entities": []
+        "text": "You helped a lot thank you"
       },
       {
-        "text": "appreciate your help",
         "intent": "thanks",
-        "entities": []
+        "text": "appreciate your help"
       },
       {
-        "text": "Cheers",
         "intent": "thanks",
-        "entities": []
+        "text": "Cheers"
       },
       {
-        "text": "Thanks",
         "intent": "thanks",
-        "entities": []
+        "text": "Thanks"
       },
       {
-        "text": "thank you for your help",
         "intent": "thanks",
-        "entities": []
+        "text": "thank you for your help"
       },
       {
-        "text": "Thanks for your help",
         "intent": "thanks",
-        "entities": []
+        "text": "Thanks for your help"
       },
       {
-        "text": "thank you that will be all",
         "intent": "thanks",
-        "entities": []
+        "text": "thank you that will be all"
       },
       {
-        "text": "Good morning",
         "intent": "goodmorning",
-        "entities": []
+        "text": "Good morning"
       },
       {
-        "text": "Morning",
         "intent": "goodmorning",
-        "entities": []
+        "text": "Morning"
       },
       {
-        "text": "Hello good moorning",
         "intent": "goodmorning",
-        "entities": []
+        "text": "Hello good moorning"
       },
       {
-        "text": "Good night",
         "intent": "goodnight",
-        "entities": []
+        "text": "Good night"
       },
       {
-        "text": "Night",
         "intent": "goodnight",
-        "entities": []
+        "text": "Night"
       },
       {
-        "text": "Have a good night",
         "intent": "goodnight",
-        "entities": []
+        "text": "Have a good night"
       },
       {
-        "text": "thanks goodnight",
         "intent": "goodnight",
-        "entities": []
+        "text": "thanks goodnight"
       },
       {
-        "text": "I want to request a meeting",
         "intent": "schedule_meeting",
         "entities": [
           {
@@ -116,10 +94,10 @@
             "value": "request a meeting",
             "entity": "goal"
           }
-        ]
+        ],
+        "text": "I want to request a meeting"
       },
       {
-        "text": "meeting",
         "intent": "schedule_meeting",
         "entities": [
           {
@@ -128,10 +106,10 @@
             "value": "meeting",
             "entity": "goal"
           }
-        ]
+        ],
+        "text": "meeting"
       },
       {
-        "text": "book a meeting",
         "intent": "schedule_meeting",
         "entities": [
           {
@@ -140,10 +118,10 @@
             "value": "book a meeting",
             "entity": "goal"
           }
-        ]
+        ],
+        "text": "book a meeting"
       },
       {
-        "text": "I want to schedule a meeting",
         "intent": "schedule_meeting",
         "entities": [
           {
@@ -152,10 +130,10 @@
             "value": "schedule a meeting",
             "entity": "goal"
           }
-        ]
+        ],
+        "text": "I want to schedule a meeting"
       },
       {
-        "text": "leave a message",
         "intent": "leave_message",
         "entities": [
           {
@@ -164,10 +142,10 @@
             "value": "leave a message",
             "entity": "goal"
           }
-        ]
+        ],
+        "text": "leave a message"
       },
       {
-        "text": "message",
         "intent": "leave_message",
         "entities": [
           {
@@ -176,10 +154,10 @@
             "value": "message",
             "entity": "goal"
           }
-        ]
+        ],
+        "text": "message"
       },
       {
-        "text": "My name is Faith Kangichu",
         "intent": "visitor_name",
         "entities": [
           {
@@ -188,10 +166,10 @@
             "value": " Faith Kangichu",
             "entity": "visitor"
           }
-        ]
+        ],
+        "text": "My name is Faith Kangichu"
       },
       {
-        "text": "Dennis Maingi",
         "intent": "visitor_name",
         "entities": [
           {
@@ -200,10 +178,10 @@
             "value": "Dennis Maingi",
             "entity": "visitor"
           }
-        ]
+        ],
+        "text": "Dennis Maingi"
       },
       {
-        "text": "I am Noah Maingi",
         "intent": "visitor_name",
         "entities": [
           {
@@ -212,10 +190,10 @@
             "value": "Noah Maingi",
             "entity": "visitor"
           }
-        ]
+        ],
+        "text": "I am Noah Maingi"
       },
       {
-        "text": "I'm Kevin Bett",
         "intent": "visitor_name",
         "entities": [
           {
@@ -224,10 +202,10 @@
             "value": " Kevin Bett",
             "entity": "visitor"
           }
-        ]
+        ],
+        "text": "I'm Kevin Bett"
       },
       {
-        "text": "She is Mercy Bett",
         "intent": "employee_name",
         "entities": [
           {
@@ -236,10 +214,10 @@
             "value": "Mercy Bett",
             "entity": "employee"
           }
-        ]
+        ],
+        "text": "She is Mercy Bett"
       },
       {
-        "text": "Linda Karimi",
         "intent": "employee_name",
         "entities": [
           {
@@ -248,10 +226,10 @@
             "value": "Linda Karimi",
             "entity": "employee"
           }
-        ]
+        ],
+        "text": "Linda Karimi"
       },
       {
-        "text": "Her name is Angela Mukami",
         "intent": "employee_name",
         "entities": [
           {
@@ -260,10 +238,10 @@
             "value": "Angela Mukami",
             "entity": "employee"
           }
-        ]
+        ],
+        "text": "Her name is Angela Mukami"
       },
       {
-        "text": "She's Emily Kariuki",
         "intent": "employee_name",
         "entities": [
           {
@@ -272,10 +250,10 @@
             "value": "Emily Kariuki",
             "entity": "employee"
           }
-        ]
+        ],
+        "text": "She's Emily Kariuki"
       },
       {
-        "text": "He's James Omondi",
         "intent": "employee_name",
         "entities": [
           {
@@ -284,10 +262,10 @@
             "value": "James Omondi",
             "entity": "employee"
           }
-        ]
+        ],
+        "text": "He's James Omondi"
       },
       {
-        "text": "He is Peter Koech",
         "intent": "employee_name",
         "entities": [
           {
@@ -296,10 +274,10 @@
             "value": "Peter Koech",
             "entity": "employee"
           }
-        ]
+        ],
+        "text": "He is Peter Koech"
       },
       {
-        "text": "His name is John Ndegwa",
         "intent": "employee_name",
         "entities": [
           {
@@ -308,10 +286,10 @@
             "value": "John Ndegwa",
             "entity": "employee"
           }
-        ]
+        ],
+        "text": "His name is John Ndegwa"
       },
       {
-        "text": "Jamie Rono",
         "intent": "employee_name",
         "entities": [
           {
@@ -320,8 +298,12 @@
             "value": "Jamie Rono",
             "entity": "employee"
           }
-        ]
+        ],
+        "text": "Jamie Rono"
       }
-    ]
+    ],
+    "regex_features": [],
+    "lookup_tables": [],
+    "entity_synonyms": []
   }
 }
