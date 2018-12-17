@@ -1,0 +1,30 @@
+{
+  "action_fingerprints": {
+    "action_listen": {
+      "slots": [
+        "goal_value"
+      ]
+    },
+    "utter_noworries": {
+      "slots": []
+    },
+    "utter_ask_visitor_name": {
+      "slots": []
+    },
+    "utter_bye": {
+      "slots": []
+    }
+  },
+  "rasa_core": "0.12.3",
+  "python": "3.6.7",
+  "max_histories": [
+    5,
+    3
+  ],
+  "ensemble_name": "rasa_core.policies.ensemble.SimplePolicyEnsemble",
+  "policy_names": [
+    "rasa_core.policies.memoization.MemoizationPolicy",
+    "rasa_core.policies.keras_policy.KerasPolicy"
+  ],
+  "trained_at": "20181217-132529"
+}

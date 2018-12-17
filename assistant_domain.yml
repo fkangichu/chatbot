@@ -20,20 +20,20 @@ entities:
   - visitor
   - goal
 
-# slots:
-#   goal_value:
-#     type: categorical
-#     values:
-#     - meeting
-#     - message
-#   visitor_name:
-#     type: text
-#   employee_name:
-#     type: text
-#   company_name:
-#     type: text
-#   email:
-#     type: text
+slots:
+  goal_value:
+    type: categorical
+    values:
+    - meeting
+    - message
+  visitor_name:
+    type: text
+  employee_name:
+    type: text
+  company_name:
+    type: text
+  email:
+    type: text
 #   message_value:
 #     type: text
 #   date_value:

@@ -1,0 +1,144 @@
+%YAML 1.1
+---
+actions:
+- utter_greet
+- utter_ask_goal
+- utter_nice_to_meet
+- utter_noworries
+- utter_bye
+- utter_great
+- utter_how_to_help
+- utter_more_information
+- utter_ask_employee_name
+- utter_ask_employee
+- utter_ask_visitor_name
+- utter_ask_company
+- utter_ask_email
+- utter_ask_message
+- utter_message_sent
+- utter_remarks
+- utter_default
+- utter_ask_date
+- action_store_visitor_name
+- action_store_employee_name
+- action_store_company
+- action_store_email
+- action_get_date
+config:
+  store_entities_as_slots: true
+entities:
+- company
+- date
+- email
+- employee
+- visitor
+- goal
+forms: []
+intents:
+- bye:
+    use_entities: true
+- greet:
+    use_entities: true
+- goal:
+    use_entities: true
+- visitor_name:
+    use_entities: true
+- employee_name:
+    use_entities: true
+- thanks:
+    use_entities: true
+- goodmorning:
+    use_entities: true
+- goodnight:
+    use_entities: true
+- nice_to_meet:
+    use_entities: true
+- schedule_a_meeting:
+    use_entities: true
+- leave_a_message:
+    use_entities: true
+- meeting_date:
+    use_entities: true
+slots:
+  company_name:
+    auto_fill: true
+    initial_value: null
+    type: rasa_core.slots.TextSlot
+  email:
+    auto_fill: true
+    initial_value: null
+    type: rasa_core.slots.TextSlot
+  employee_name:
+    auto_fill: true
+    initial_value: null
+    type: rasa_core.slots.TextSlot
+  goal_value:
+    auto_fill: true
+    initial_value: null
+    type: rasa_core.slots.CategoricalSlot
+    values:
+    - meeting
+    - message
+  visitor_name:
+    auto_fill: true
+    initial_value: null
+    type: rasa_core.slots.TextSlot
+templates:
+  utter_ask_company:
+  - text: What company do you work for?
+  utter_ask_date:
+  - text: When would you like the meeting to be?
+  utter_ask_email:
+  - text: What's your email address?
+  utter_ask_employee:
+  - text: Who would you like to leave a message?
+  utter_ask_employee_name:
+  - text: Who would you like to visit?
+  utter_ask_goal:
+  - buttons:
+    - payload: meeting
+      title: Schedule a meeting
+    - payload: message
+      title: Leave a message
+    text: What would you like me to help you with?
+  utter_ask_message:
+  - text: What message would you like to leave for {employee_name}?
+  utter_ask_visitor_name:
+  - text: What's your name?
+  utter_bye:
+  - text: Goodbye!
+  - text: Bye!
+  - text: Take care!
+  - text: Bye, was nice talking to you!
+  utter_default:
+  - text: Sorry, I didn't get that 🤷🏻‍. Could you please rephrase?
+  - text: I didn't understand, could you rephrase that?
+  - text: I'm sorry, but I didn't understand you. Could you please rephrase what you
+      just said?
+  - text: I'm afraid I didn't get what you just said. Could you rephrase that?
+  - text: I didn't quite get that, could you rephrase your message?
+  - text: Could you rephrase your message? I didn't get it, I'm sorry.
+  utter_great:
+  - text: Great! 👍
+  - text: That's great! 🙌
+  - text: Awesome! 🎉
+  - text: Amazing 🚀
+  utter_greet:
+  - text: What's up
+  - text: Hello 😉
+  - text: 'Hi there '
+  utter_message_sent:
+  - text: Your message has been sent to {employee_name}.
+  utter_more_information:
+  - text: Sure! Let's get to know each other first 😉
+  utter_nice_to_meet:
+  - text: It is a pleasure to meet {visitor_name}!
+  - text: It is nice to meet you {visitor_name}!
+  - text: Pleased to meet you {visitor_name}!
+  utter_noworries:
+  - text: No worries!
+  - text: You're welcome!
+  - text: I'm happy to help.
+  - text: 👍
+  utter_remarks:
+  - text: Thanks a bunch, we'll be in touch soon! ✉️
