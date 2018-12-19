@@ -8,6 +8,7 @@ actions:
 - utter_bye
 - utter_great
 - utter_how_to_help
+- utter_not_office_hours
 - utter_more_information
 - utter_ask_employee_name
 - utter_ask_employee
@@ -41,9 +42,7 @@ intents:
     use_entities: true
 - goal:
     use_entities: true
-- visitor_name:
-    use_entities: true
-- employee_name:
+- name:
     use_entities: true
 - thanks:
     use_entities: true
@@ -59,19 +58,21 @@ intents:
     use_entities: true
 - meeting_date:
     use_entities: true
+- enter_data:
+    use_entities: false
 slots:
   company_name:
     auto_fill: true
     initial_value: null
-    type: rasa_core.slots.TextSlot
+    type: rasa_core.slots.UnfeaturizedSlot
   email:
     auto_fill: true
     initial_value: null
-    type: rasa_core.slots.TextSlot
+    type: rasa_core.slots.UnfeaturizedSlot
   employee_name:
     auto_fill: true
     initial_value: null
-    type: rasa_core.slots.TextSlot
+    type: rasa_core.slots.UnfeaturizedSlot
   goal_value:
     auto_fill: true
     initial_value: null
@@ -82,7 +83,7 @@ slots:
   visitor_name:
     auto_fill: true
     initial_value: null
-    type: rasa_core.slots.TextSlot
+    type: rasa_core.slots.UnfeaturizedSlot
 templates:
   utter_ask_company:
   - text: What company do you work for?
@@ -135,6 +136,8 @@ templates:
   - text: It is a pleasure to meet {visitor_name}!
   - text: It is nice to meet you {visitor_name}!
   - text: Pleased to meet you {visitor_name}!
+  utter_not_office_hours:
+  - text: Sorry, we're only open on weekdays.
   utter_noworries:
   - text: No worries!
   - text: You're welcome!

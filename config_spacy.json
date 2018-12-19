@@ -2,4 +2,4 @@
     "pipeline":"spacy_sklearn",
     "path":"./models/nlu",
     "data":"./data/data.json"
-}
+  }

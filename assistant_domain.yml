@@ -2,8 +2,7 @@ intents:
   - bye
   - greet
   - goal
-  - visitor_name
-  - employee_name
+  - name
   - thanks
   - goodmorning
   - goodnight
@@ -11,6 +10,7 @@ intents:
   - schedule_a_meeting
   - leave_a_message
   - meeting_date
+  - enter_data: {use_entities: false}
 
 entities:
   - company
@@ -27,17 +27,18 @@ slots:
     - meeting
     - message
   visitor_name:
-    type: text
+    type: name
   employee_name:
-    type: text
+    type: name
   company_name:
-    type: text
+    type: name
   email:
-    type: text
-#   message_value:
-#     type: text
+    type: name
+  message:
+    type: unfeaturized
 #   date_value:
 #     type: unfeaturized
+
 
 actions:
   - utter_greet
@@ -47,6 +48,7 @@ actions:
   - utter_bye
   - utter_great
   - utter_how_to_help
+  - utter_not_office_hours
   - utter_more_information
   - utter_ask_employee_name
   - utter_ask_employee
@@ -84,6 +86,9 @@ templates:
 
   utter_ask_visitor_name:
     - text: "What's your name?"
+
+  utter_not_office_hours:
+    - text: "Sorry, we're only open on weekdays."
   
   utter_nice_to_meet:
     - text: "It is a pleasure to meet {visitor_name}!"

@@ -2,16 +2,40 @@
   "action_fingerprints": {
     "action_listen": {
       "slots": [
+        "email",
         "goal_value"
       ]
     },
-    "utter_noworries": {
+    "action_store_visitor_name": {
+      "slots": [
+        "visitor_name"
+      ]
+    },
+    "action_store_company": {
+      "slots": [
+        "company_name"
+      ]
+    },
+    "action_store_email": {
+      "slots": [
+        "email"
+      ]
+    },
+    "action_store_employee_name": {
+      "slots": [
+        "employee_name"
+      ]
+    },
+    "utter_remarks": {
       "slots": []
     },
-    "utter_ask_visitor_name": {
+    "utter_message_sent": {
       "slots": []
     },
     "utter_bye": {
+      "slots": []
+    },
+    "utter_noworries": {
       "slots": []
     }
   },
@@ -19,12 +43,12 @@
   "python": "3.6.7",
   "max_histories": [
     5,
-    3
+    5
   ],
   "ensemble_name": "rasa_core.policies.ensemble.SimplePolicyEnsemble",
   "policy_names": [
     "rasa_core.policies.memoization.MemoizationPolicy",
     "rasa_core.policies.keras_policy.KerasPolicy"
   ],
-  "trained_at": "20181217-132529"
+  "trained_at": "20181219-131436"
 }
